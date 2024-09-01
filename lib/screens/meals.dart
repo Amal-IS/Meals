@@ -7,32 +7,37 @@ import 'package:meals/widgets/meal_item.dart';
 class MealsScreen extends StatelessWidget{
   const MealsScreen({
     super.key,
-    required this.title,
+    this.title,
     required this.meals,
+    required this.onToggleFavorite,
 
     });
 
-  final String title;
+  final String? title;
   final List<Meal> meals;
+  final void Function(Meal meal) onToggleFavorite;
 
   void _selectMeal(BuildContext context,Meal meal){
-    Navigator.push(context,MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(meal: meal),));
+    Navigator.push(context,MaterialPageRoute(builder: (ctx)=>MealDetailsScreen(
+      meal: meal,
+      onToggleFavorite: onToggleFavorite,
+      ),));
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Center(
+    Widget content = Center(
     child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text("Uh oh ... nothing here!",
-        //style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-        //  color: Colors.black54,),
+        style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+         color: Colors.black54,),
         ),
-        SizedBox(height: 16,),
-        Text("Try selecting a different category!",//style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          //color: Colors.black54,
-     //   ),
+        const SizedBox(height: 16,),
+        Text("Try selecting a different category!",style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: Colors.black54,
+       ),
         ),
       ],
       ),
@@ -47,9 +52,12 @@ if(meals.isNotEmpty){
       );
     
 }
+if(title==null){
+  return content;
+}
 return Scaffold(
 appBar: AppBar(
-  title: Text(title),
+ title: Text(title!),
 ),
 body:content,
 );
