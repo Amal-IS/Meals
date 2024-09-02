@@ -32,11 +32,11 @@ class MealsScreen extends StatelessWidget{
       children: [
         Text("Uh oh ... nothing here!",
         style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-         color: Colors.black54,),
+         color: const Color.fromARGB(255, 255, 237, 237),),
         ),
         const SizedBox(height: 16,),
         Text("Try selecting a different category!",style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: Colors.black54,
+          color:const Color.fromARGB(255, 255, 237, 237),
        ),
         ),
       ],
